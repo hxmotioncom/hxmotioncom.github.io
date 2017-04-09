@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HX Motion</title>
+<link rel='shortcut icon' href="./hxm-favicon.png">
+<link rel="stylesheet" href="./stylesheets/w3css/2.62/w3.css">
+<link rel="stylesheet" href="./stylesheets/font-awesome-4.6.3/css/font-awesome.css">
+<link rel="stylesheet" href="./stylesheets/app.css">
+<script src="./javascripts/jquery-1.11.1.min.js"></script>
+<script src='./javascripts/handlebars-v2.0.0.js'></script>
+<script>
+var T = {
+	"tc":{
+		"description-font-size":"w3-xlarge",
+		"hxmotion": "亨信",
+		"hxmotion-fullname": "廣東亨信網絡科技有限公司",
+		"hxmotion-description": "，廣東亨信網絡科技有限公司，為一間綜合性的資訊科技集成及咨詢公司。為不同行業的公司提供系統集成、軟件開發等一系列軟硬件產品服務。",
+		"hxmotion-description-2":"",
+		"tc-btn-class":"w3-blue",
+		"sc-btn-class":"w3-hover-grey",
+		"en-btn-class":"w3-hover-grey",
+		"home":"首頁",
+		"about-hxm":"關於亨信",
+		"cases":"案例",
+		"contact-hxm":"聯系亨信"
+		
+	},
+	"sc":{
+		"description-font-size":"w3-xlarge",
+		"hxmotion": "亨信",
+		"hxmotion-fullname": "廣東亨信網絡科技有限公司",
+		"hxmotion-description": "，廣東亨信網絡科技有限公司，為一間綜合性的資訊科技集成及咨詢公司。為不同行業的公司提供系統集成、軟件開發等一系列軟硬件產品服務。",
+		"hxmotion-description-2":"",
+		"tc-btn-class":"w3-hover-grey",
+		"sc-btn-class":"w3-blue",
+		"en-btn-class":"w3-hover-grey",
+		"home":"首頁",
+		"about-hxm":"关於亨信",
+		"cases":"案例",
+		"contact-hxm":"聯系亨信"
+	},
+	"en":{
+		"description-font-size":"w3-large",
+		"hxmotion": "HX Motion",
+		"hxmotion-fullname": "Gong Dong Heng Xin Motion Limited",
+		"hxmotion-description": ", Gong Dong Heng Xin Motion Limited, is an integrated IT Solution and consultancy service provider.",
+		"hxmotion-description-2": "Partnering with famous brands, HX Motion has delivered System Integrations Project, Custom Software Development Projects and Products Provision for different industries.",
+		"tc-btn-class":"w3-hover-grey",
+		"sc-btn-class":"w3-hover-grey",
+		"en-btn-class":"w3-blue",
+		"home":"HOME",
+		"about-hxm":"ABOUT",
+		"cases":"CASES",
+		"contact-hxm":"CONTACT"
+	}
+}
+</script>
+<style>
+* {font-family:'微軟正黑體',arial;}
+.content {display:none;}
+.bubble {width:130px;height:130px;display:inline-block;}
+.bubble .term {padding-top:40px;}
+.page {display:none;}
+.page.home {display:block}
+.avatar {
+ -webkit-filter: grayscale(100%) 
+				brightness(100%)
+				contrast(100%);
+filter: grayscale(100%) 
+				brightness(100%)
+				contrast(100%);
+}
+</style>
+<body>
+<div class="content">
+	<div class="w3-top">
+		<div class="w3-white w3-padding logo-banner w3-hide-small">
+			<img class="favicon" src="hxm-favicon.png" style="height:64px;" onmouseover="$(this).hide();$('.logo').fadeIn()"><img class="logo" src="hxm-logo.png" style="display:none;height:64px;" onmouseout="$(this).hide();$('.favicon').fadeIn()">
+			<div class="w3-right w3-margin w3-nowrap">
+				<ul class="w3-navbar w3-nowrap">
+				<li><a class="{{tc-btn-class}} lang-btn tc" href="?lang=tc">繁</a>
+				<li><a class="{{sc-btn-class}} lang-btn sc" href="?lang=sc">简</a>
+				<li><a class="{{en-btn-class}} lang-btn en" href="?lang=en">EN</a>
+				</ul>
+			</div>
+		</div>
+		
+		<!-- bar for medium/large screen -->
+		<div class="w3-blue tabs w3-hide-small">
+			<ul class="w3-navbar" id="myNavbar">
+				<li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
+					<a class="w3-hover-black" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+						<i class="fa fa-bars"></i>
+					</a>
+				</li>
+				<li class="w3-left-align w3-hide-medium w3-hide-large"><a href="#home" class="page-tab">
+					<img class="favicon" src="hxm-logo.png" style="height:24px;border:1px solid color:#fff">
+				</a></li>
+				<li class="w3-left-align w3-hide-small"><a href="#home" class="page-tab">{{home}}</a></li>
+				<li class="w3-hide-small"><a href="#about" class="page-tab"><i class="fa fa-user"></i> {{about-hxm}}</a></li>
+				<li class="w3-hide-small"><a href="#portfolio" class="page-tab"><i class="fa fa-th"></i> {{cases}}</a></li>
+				<li class="w3-hide-small"><a href="#contact" class="page-tab"><i class="fa fa-envelope"></i> {{contact-hxm}}</a></li>
+				<li class="w3-hide-small w3-right">
+					<a href="#" class="w3-hover-red">
+						<i class="fa fa-search"></i>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="w3-white tabs w3-hide-medium w3-hide-large  w3-card-2">
+			<ul class="w3-navbar" id="myNavbar">
+				<li class="w3-hide-medium w3-hide-large w3-opennav w3-right">
+					<a class="w3-hover-black" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+						<i class="fa fa-bars"></i>
+					</a>
+				</li>
+				<li class="w3-left-align w3-hide-medium w3-hide-large"><a href="#home" class="page-tab">
+					<img class="favicon" src="hxm-logo.png" style="height:24px;border:1px solid color:#fff">
+				</a></li>
+				<li class="w3-left-align w3-hide-small"><a href="#home" class="page-tab">{{home}}</a></li>
+				<li class="w3-hide-small"><a href="#about" class="page-tab"><i class="fa fa-user"></i> {{about-hxm}}</a></li>
+				<li class="w3-hide-small"><a href="#portfolio" class="page-tab"><i class="fa fa-th"></i> {{cases}}</a></li>
+				<li class="w3-hide-small"><a href="#contact" class="page-tab"><i class="fa fa-envelope"></i> {{contact-hxm}}</a></li>
+				<li class="w3-hide-small w3-right">
+					<a href="#" class="w3-hover-red">
+						<i class="fa fa-search"></i>
+					</a>
+				</li>
+			</ul>
+		</div>
+		
+		<!-- Navbar on small screens -->
+		<div id="navDemo" class="w3-hide-large w3-hide-medium tabs phone" style="display:none;">
+			<ul class="w3-navbar w3-left-align w3-white">
+				<li><a href="#home" class="page-tab m">{{home}}</a></li>
+				<li><a href="#about" class="page-tab m">{{about-hxm}}</a></li>
+				<li><a href="#portfolio" class="page-tab m">{{cases}}</a></li>
+				<li><a href="#contact" class="page-tab m">{{contact-hxm}}</a></li>
+				<li class="w3-light-grey">
+					<div class="w3-container">
+					<button class="w3-btn w3-light-grey w3-right"><a class="{{en-btn-class}} lang-btn en" href="?lang=en">EN</a></button>
+					<button class="w3-btn w3-light-grey w3-right"><a class="{{sc-btn-class}} lang-btn sc" href="?lang=sc">简</a></button>
+					<button class="w3-btn w3-light-grey w3-right"><a class="{{tc-btn-class}} lang-btn tc" href="?lang=tc">繁</a></button>
+					</div>
+				</li>
+			</ul>
+		</div>
+		
+	</div>
+
+
+<div class="w3-hide-small" style="margin-top:118px;"> </div>
+<div class="w3-hide-medium w3-hide-large" style="margin-top:38px;"> </div>
+<div class="pages">
+	<div class="1w3-margin 1w3-padding page home">
+		<div class="w3-row w3-center"  style="background:url(images/6749661973_e2c267e9ed_b.jpg)">
+			<div class="w3-col m2 l2 w3-hide-s">&nbsp;</div>
+			<div class="w3-col m8 l8">
+				<div class="w3-padding" style="min-height:300px;">
+					<div class="w3-circle w3-green bubble">
+						<div class="w3-xlarge term">機房規劃</div>
+						<div><i class="fa fa-server"></i></div>
+					</div>
+					<div class="w3-circle w3-red bubble">
+						<div class="w3-xlarge term">企業網站</div>
+						<div><i class="fa fa-globe"></i></div>
+					</div>
+					<div class="w3-circle w3-yellow bubble">
+						<div class="w3-xlarge term">ERP</div>
+						<div><i class="fa fa-calculator"></i></div>
+					</div>
+					<div class="w3-circle w3-blue bubble">
+						<div class="w3-xlarge term">CRM</div>
+						<div><i class="fa fa-shopping-bag"></i></div>
+					</div>
+					<div class="w3-circle w3-black bubble">
+						<div class="w3-xlarge term">企業 Wifi</div>
+						<div><i class="fa fa-wifi"></i></div>
+					</div>
+					<div class="w3-circle w3-green bubble">
+						<div class="w3-xlarge term">流動方案</div>
+						<div><i class="fa fa-android"></i> <i class="fa fa-apple"></i></div>
+					</div>
+					<div class="w3-circle w3-orange bubble">
+						<div class="w3-xlarge term">企業專網</div>
+						<div><i class="fa fa-random"></i></div>
+					</div>
+				</div>
+				<div class="">
+				<p class="w3-text-white w3-xxlarge w3-text-shadow">每一項都可以是 IT 提供的優勢
+				</div>
+			</div>
+			<div class="w3-col m2 l2 w3-hide-s">&nbsp;</div>
+		</div>
+		<div class="w3-container">
+			<div class="w3-xlarge w3-text-green"style="padding-top:40px;"><i class="fa fa-server"></i> 機房規劃
+				<span class="w3-large w3-text-black">安存，穩定的機房是企業 IT 的基礎。HX Motion 提供企業機房的規劃，設計，以至工程施工的全方服務。不如找我們提供<a class="w3-text-red">免費</a>的<a class="w3-text-red">初步方案</a>參考。</span>
+			</div>
+			<div class="w3-xlarge w3-text-red"style="padding-top:40px;"><i class="fa fa-globe"></i> 企業網站
+				<span class="w3-large w3-text-black">這是客戶對您的第一能見度。我們即將推出全新的企業網站方案。請繼續留意稍後的內容。</span>
+			</div>
+			<div class=" w3-xlarge w3-text-yellow"style="padding-top:40px;"><i class="fa fa-calculator"></i> ERP / CRM
+				<span class="w3-large w3-text-black">無論企業大小，服務、零售或是制造業，企業系統都支撐著企業營運。</span>
+			</div>
+			<div class=" w3-xlarge w3-text-green"style="padding-top:40px;"><i class="fa fa-android"></i> <i class="fa fa-apple"></i> 流動方案
+				<span class="w3-large w3-text-black">手機已經成為最接近同事及客戶的工具，想想有什麼可能性把他們留住。</span>
+			</div>
+			<div class=" w3-xlarge w3-text-orange"style="padding-top:40px;"><i class="fa fa-random"></i> 企業專網
+				<span class="w3-large w3-text-black">對於多工廠多工作地點的企業，企業內各地的連線是重要的。MPLS / IPSC 等的企業專網方案可以協助你。</span>
+			</div>
+		</div>
+	</div>
+	
+	<div class="w3-margin w3-padding page about">
+		<div class="w3-row 1w3-center">
+			<div class="w3-col m2 l2 w3-hide-s">&nbsp;</div>
+			<div class="w3-round w3-col m8 l8 w3-white">
+				<div class="w3-margin w3-board-grey 1w3-xlarge {{description-font-size}}" style="1height:450px;">
+					<p>
+					<span class="w3-xxlarge w3-text-blue ">{{hxmotion}}</span>
+					{{hxmotion-description}}
+					{{#if hxmotion-description-2}}
+					&nbsp;{{hxmotion-description-2}}
+					{{/if}}
+					<div class="w3-center w3-container">
+						<img src="./images/partner-logos.png" style="width:100%;max-width:400px;">
+					</div>
+					<div>
+						
+					</div>
+				</div>
+				
+			</div>
+			<div class="w3-col m2 l2 w3-hide-s">&nbsp;</div>
+		</div>
+	</div>
+	<div class="w3-margin w3-padding page portfolio">
+		<div class="w3-row 1w3-center">
+			<div class="w3-col m2 l2 w3-hide-s">&nbsp;</div>
+			<div class="w3-round w3-col m8 l8 w3-white">
+				<div class="w3-margin w3-board-grey w3-xlarge" style="height:450px;">
+					<div><img src="./images/handshake-flat.png"></div>
+					<div class="w3-center w3-padding w3-text-grey w3-jumbo">COMING SOON</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="w3-margin w3-padding page contact">
+		<div class="w3-row 1w3-center">
+			<div class="w3-col m2 l2 w3-hide-s">&nbsp;</div>
+			<div class="w3-round w3-col m8 l8 w3-white">
+				<div class="w3-margin w3-board-grey w3-xlarge" style="height:450px;">
+					<p><span class="w3-xxlarge w3-text-blue ">亨信</span>歡迎您聯系我們
+					<div class="w3-row">
+						<div class="w3-col m4 l4 w3-hide-small">
+							<img src="images/company-map.png" style="width:100%;" class="w3-circle">
+						</div>
+						<div class="w3-col m8 l8 w3-padding w3-text-blue">
+							<div class="w3-row"> 
+								<div class="w3-col s2 m2 l2"><i class="fa fa-map-pin"></i></div>
+								<div class="w3-col s10 m10 l10"> 虎门富民商业大厦 18 樓 23 室 <BR><span class="w3-text-grey">廣東省東莞市虎门大道 305 號</span>
+								</div>
+							</div>
+							<div class="w3-row"> 
+								<div class="w3-col s2 m2 l2"><i class="fa fa-envelope-o"></i></div>
+								<div class="w3-col s10 m10 l10"> hxmotion@sina.com </div>
+							</div>
+							<div class="w3-row"> 
+								<div class="w3-col s2 m2 l2"><i class="fa fa-globe"></i></div>
+								<div class="w3-col s10 m10 l10"> www.hxmotion.com </div>
+							</div>
+							<div class="w3-row"> 
+								<div class="w3-col s2 m2 l2"><i class="fa fa-phone"></i></div>
+								<div class="w3-col s10 m10 l10"> +86 (769) 86091678</div>
+							</div>
+							<div class="w3-row"> 
+								<div class="w3-col s2 m2 l2"><i class="fa fa-facebook-square"></i></div>
+								<div class="w3-col s10 m10 l10"> HX Motion</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="w3-margin w3-board-grey w3-xlarge" style="height:450px;">
+					<p><span class="w3-xxlarge w3-text-blue ">亨信</span>客戶溝通團隊
+					<div class="w3-row w3-padding-top">
+						<div class="w3-col s4 m4 l4 w3-center">
+							<img class="avatar" src="images/simon-bw-300x300.png" style="width:120px;height:120px;border-radius:200px;background:#666;">
+						</div>
+						<div class="w3-col s8 m8 l8">
+							<div class="w3-xlarge">Simon CHAM</div>
+							<div class="w3-tiny">Software Architect &middot; Currently interested in developing systems with Node.JS, NoSQL such as MongoDB. Over 15+ year experience on ERP implementations, database-centeric systems design and development.</div>
+							<div ><i class='w'></i></div>
+						</div>
+					</div>
+					<div class="w3-row w3-padding-top">
+						<div class="w3-col s4 m4 l4 w3-center">
+							<img class="avatar" src="images/avatar-man-1.jpg" style="width:120px;height:120px;border-radius:200px;background:#666;">
+						</div>
+						<div class="w3-col s8 m8 l8">
+							<div class="w3-xlarge">Peter LO</div>
+							<div class="w3-tiny">銷售總監 &middot; VPN / IPLC / LAN / MPLS / VoIP 網絡方案設計，專網接線專家，客戶關系管理</div>
+						</div>
+					</div>
+					<div class="w3-row w3-padding-top">
+						<div class="w3-col s4 m4 l4 w3-center">
+							<img class="avatar" src="images/avatar-man-7.jpg" style="width:120px;height:120px;border-radius:200px;background:#666;">
+						</div>
+						<div class="w3-col s8 m8 l8">
+							<div class="w3-xlarge">CHEN RON</div>
+							<div class="w3-tiny">技術經理 &middot; 網絡設備規劃，數據中心建設工程管理</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="w3-col m2 l2 w3-hide-s">&nbsp;</div>
+		</div>
+	</div>
+</div>
+<div class="spacer" style="height:30px;"></div>
+<div class="w3-footer w3-black 1w3-light-grey w3-padding w3-tiny w3-border-top">
+	<div class="w3-padding">
+	&nbsp;Copyright &copy; 2017 All rights reserved.<BR><BR>
+	<a href="#" class="w3-padding"> 亨信網誌</a>
+	<a href="#" class="w3-padding"> 趋勢照明</a>
+	<a href="litemotion.net" class="w3-padding"> litemotion</a>
+	<a href="#" class="w3-padding"> <i class="fa fa-facebook-official"></i></a>
+	<a href="#" class="w3-padding"> <i class="fa fa-weibo"></i></a>
+	</div>
+	</ul>
+</div>
+</div>
+<script>
+$(document).ready(function(){
+	var s = document.location.search.replace("?lang=",""); if(!s) s = "sc"
+	var c = $(".content"), t = c.html()
+	c.html(Handlebars.compile(t)(T[s]))
+	c.fadeIn();
+	$(".tabs a.page-tab").click(function(){
+		var h = $(this).attr('href').replace('#','')
+		if(!h) h="home"
+		$(".page").hide();$(".page."+h).show()
+		$(".page-tab").toggleClass("w3-grey",false)
+		$(".page-tab").each(function(){
+			if($(this).attr("href") == "#" + h) {
+				$(this).toggleClass("w3-grey",true)
+			}
+		})
+		if($(this).hasClass('m')) toggleFunction()
+	})
+	
+})
+
+	window.toggleFunction = function() {
+		$("#navDemo").toggle();
+	}
+</script>
+</body>
+</html>
